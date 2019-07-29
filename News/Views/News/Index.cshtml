@@ -1,0 +1,52 @@
+﻿@model IEnumerable<News>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h3>Organization News</h3>
+    </div>
+    <div class="card-body" style="background-color: white; padding: 10px; border-radius: 5px">
+
+        <div>
+            <p class="text-right">
+                <a asp-action="Create" class="btn btn-primary" style="padding-left: 20px; padding-right: 20px"> Add News </a>
+            </p>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    <img class="img-rounded" width="180" height="180" src="~/uploads/img/News/@Html.DisplayFor(modelItem => item.Image)" />
+                </div>
+                <div class="col-md-10">
+                    <h2 style="margin-top: 3px;">@Html.DisplayFor(modelItem => item.Title)</h2>
+                    <div class="row">
+                        <div class="col-md-10">
+                            By System Adminstrator@*@Html.DisplayFor(modelItem => item.PublisherId)*@
+                            - On @Html.DisplayFor(modelItem => item.NewsDate)
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <a asp-action="Edit" asp-route-id="@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
+                            @*<a asp-action="Details" asp-route-id="@item.Id">Details</a>*@
+                            <a asp-action="Delete" asp-route-id="@item.Id"  onclick = "return confirm('Are you sure to delete this news?')"><i class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </div>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </div>
+            </div>
+                
+               <br />
+        }
+
+
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+</div>

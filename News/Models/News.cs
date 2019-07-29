@@ -23,6 +23,7 @@ namespace News.Models
 
         public string Content { get; set; }
 
+        [Display(Name ="News Image")]
         public string Image { get; set; }
 
     }
